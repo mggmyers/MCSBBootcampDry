@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ##First things first: Gather materials!
@@ -45,10 +45,10 @@ To explore this interplay, we will end this module with a project where we look 
 ####NOTE: You will need to change the file path based on where you saved these files.
 
 #extract metadata (information about each cell, e.g. cluster assignment)
-cell_metadata <- read.table("/Users/kerriganblake/Desktop/Misc/R_Markdown_Bootcamp_2018/cell_metadata.txt")
+cell_metadata <- read.table("C:/bootcamp_dry/MCSBBootcampDry/Zoo/R/cell_metadata.txt")
 
 #extract the normalized data matrix
-expression_matrix <- readRDS("/Users/kerriganblake/Desktop/Misc/R_Markdown_Bootcamp_2018/expression_matrix.rds")
+expression_matrix <- readRDS("C:/bootcamp_dry/MCSBBootcampDry/Zoo/R/expression_matrix.rds")
 ```
 
 ##Data Investigation
@@ -81,6 +81,9 @@ table(cell_metadata$orig.ident, cell_metadata$res.0.4)
 #next, you give a mapping, where x=column name of data you want to plot on the x-axis, etc with fill generating a different color for each factor you plot
 #finally, you tell ggplot the type of plot you want to render (for example, geom_point() would make a dot plot)
 ggplot(cell_metadata, mapping=aes(x=orig.ident, y=nGene, fill=orig.ident)) + geom_violin()
+
+
+
 ```
 
 ###Question 4a: What are the most commonly expressed genes in the dataset? (i.e. Which gene or set of genes is expressed in the largest number of cells)?
@@ -92,7 +95,7 @@ n_cells_expressed <- rowSums(expression_matrix > 0)
 #which selects values from the first vector that match values in the second vector
 most_expressed <- n_cells_expressed[which(n_cells_expressed %in% max(n_cells_expressed))]
 
-#to keep only the gene names, we can use names()
+most-#to keep only the gene names, we can use names()
 names_of_most_expressed <- names(most_expressed)
 ```
 
